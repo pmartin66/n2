@@ -37,13 +37,7 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: webapp-configmap
-              key: group-name
-        - name: 
-          valueFrom:
-            configMapKeyRef:
-              name: webapp-configmap
-              key: image_url
-        - name: background
+              key: group-name, image_url
           valueFrom:
             configMapKeyRef:
               name: webapp-configmap
