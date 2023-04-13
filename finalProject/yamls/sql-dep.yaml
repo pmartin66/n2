@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sql-deployment
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: sqldb
+        image: 587312347089.dkr.ecr.us-east-1.amazonaws.com/mysql:latest
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "pw"
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+          - name: sql-data
+            mountPath: /var/lib/mysql
+      volumes:
+        - name: sql-data
+          persistentVolumeClaim:
+            claimName: sql-data
+      imagePullSecrets:
+      - name: regcred

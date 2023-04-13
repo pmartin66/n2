@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+spec:
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp
+        image: 587312347089.dkr.ecr.us-east-1.amazonaws.com/test:latest
+        env:
+        - name: DBUSER
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: username
+        - name: DATABASE
+          value: "employees"
+        - name: DBPWD
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: password
+        - name: APP_COLOR
+          value: "green"
+        - name: DBPORT
+          value: "3306"
+        - name: DBHOST
+          value: sql-service
+        - name: group-name
+          valueFrom:
+            configMapKeyRef:
+              name: webapp-configmap
+              key: group-name
+        - name: background
+          valueFrom:
+            configMapKeyRef:
+              name: webapp-configmap
+              key: s3-bucket
+        - name: key_id
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: key_id
+        - name: access_key
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: access_key
+        - name: session_token
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: session_token
+        ports:
+        - containerPort: 81
+      imagePullSecrets:
+      - name: regcred
