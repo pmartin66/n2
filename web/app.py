@@ -15,12 +15,12 @@ DBPWD = os.environ.get("DBPWD") or "passwors"
 DATABASE = os.environ.get("DATABASE") or "employees"
 COLOR_FROM_ENV = os.environ.get('APP_COLOR') or "lime"
 DBPORT = 3306 or int(os.environ.get("DBPORT")) 
-bucket_name= os.environ.get("background") or "kuberneteslovers"
+bucket_name= os.environ.get("background12") or "kuberneteslovers12"
 key_id= os.environ.get("key_id")
 access_key= os.environ.get("access_key")
 session_token=os.environ.get("session_token")
 groupname=os.environ.get("group-name") or "group 13"
-fileName= "image.jpg"
+fileName= "image.png.jfif"
 
 #Download the Image from s3 bucket
 def download_file(fileName, bucket_name):
@@ -47,7 +47,7 @@ def download_file(fileName, bucket_name):
     
     # s3.download_file('bucketURL', 'image.jpg', 'r/img/image.jpg')
     print({bucket_name})
-    return s3.Bucket(bucket_name).download_file('image.jpg','/app/templates/image.jpg')
+    return s3.Bucket(bucket_name).download_file('image.png.jfif','/app/templates/image.png.jfif')
     # s3.Bucket(bucketURL).download_file(file_name, output)
 
     
@@ -55,7 +55,7 @@ def download_file(fileName, bucket_name):
 # Create a connection to the MySQL database
 db_conn = connections.Connection(
     host= DBHOST,
-    port=DBPORT,
+    port= DBPORT,
     user= DBUSER,
     password= DBPWD, 
     db= DATABASE

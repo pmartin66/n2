@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: sqldb
-        image: 587312347089.dkr.ecr.us-east-1.amazonaws.com/mysql:latest
+        image: 380295710645.dkr.ecr.us-east-1.amazonaws.com/my_db:v1.0
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: "pw"
