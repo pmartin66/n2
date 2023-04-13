@@ -3,5 +3,6 @@ kind: ConfigMap
 metadata:
   name: webapp-configmap
 data:
-  s3-bucket: kuberneteslovers
+  s3-bucket: background
+  image_url: "https://background12.s3.amazonaws.com/image.png.jfif"
   group-name: group13
